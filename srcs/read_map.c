@@ -1,11 +1,13 @@
 #include "bsq.h"
-void	map_to_tab(char *path, t_map *map)
+void	read_map(char *path, t_map *map)
 {
-//	int *tab;
 	int fd;
 	char buf;
+	int i;
 
-	fd = open(path, O_RDONLY);
+	i = 0;
+	if ((fd = open(path, O_RDONLY)) == -1)
+		ft_puterr();;
 	while (read(fd, &buf, 1) != 0 && buf != '\n')
 	{}
 	while (read(fd, &buf, 1) != 0)
@@ -14,10 +16,13 @@ void	map_to_tab(char *path, t_map *map)
 		if (buf == '\n')
 			map->nb_lines++;
 	}
+	if (!(map->map = malloc(sizeof(char) * map->nb_cases)))
+		exit(1);
 	map->nb_cases -= map->nb_lines;
-	printf("%d", map->nb_cases);
-}
-void							read_map(char *path, t_map *map)
-{
-		map_to_tab(path, map);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	while (read(fd, &buf, 1) != 0 && buf != '\n')
+	{}
+	while (read(fd, &buf, 1) != 0)
+		map->map[i++] = buf;
 }
