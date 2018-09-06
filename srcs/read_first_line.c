@@ -1,6 +1,6 @@
 #include "bsq.h"
 
-char	*fl_to_tab(char *path)
+char	*fl_to_tab(char *path, t_fl *first_line)
 {
 	int 	fd;
 	char	buf;
@@ -15,6 +15,7 @@ char	*fl_to_tab(char *path)
 	fd = open(path, O_RDONLY);
 	if (!(fl = malloc(sizeof(char) * i)))
 		exit(1);
+	first_line->size_fl = i;
 	i = 0;
 	while (read(fd, &buf, 1) != 0 && buf != '\n')
 		fl[i++] = buf;
@@ -26,7 +27,7 @@ void	read_fl(char *path, t_fl *first_line)
 {
 	char *fl;
 	int		sizefl;
-	fl = fl_to_tab(path);
+	fl = fl_to_tab(path, first_line);
 
 	sizefl = ft_strlen(fl);
 	first_line->fill = fl[sizefl - 1];
