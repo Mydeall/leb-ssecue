@@ -2,14 +2,13 @@
 
 t_fl	*init_t_fl()
 {
-	t_fl	*fl_data;
+	t_fl	*fl;
 
-	if (!(fl_data = malloc(sizeof(t_fl))))
+	if (!(fl = malloc(sizeof(t_fl))))
 		exit(1);
-	fl_data->size = 0;
-	fl_data->obs  = '\0';
-	fl_data->empty  = '\0';
-	fl_data->fill  = '\0';
-	fl_data->size_fl = 0;
-	return (fl_data);
+	fl->size = 0;
+	fl->obs  = '\0';
+	fl->empty  = '\0';
+	fl->fill  = '\0';
+	return (fl);
 }
