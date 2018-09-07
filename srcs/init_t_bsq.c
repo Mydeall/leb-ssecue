@@ -6,8 +6,7 @@ t_bsq	*init_t_bsq()
 
 	if (!(init = malloc(sizeof(t_bsq))))
 		exit(1);
-	init->posx = 0;
-	init->posy = 0;
-	init->size = 4;
+	init->pos = 3;
+	init->size = 0;
 	return (init);
 }

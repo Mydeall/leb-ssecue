@@ -9,9 +9,9 @@
 
 typedef struct 	s_map
 {
-	int			nb_cases;
-	int			map_y;
 	char		*map;
+	int			nboct;
+	int			map_y;
 	int			map_x;
 }				t_map;
 
@@ -25,19 +25,17 @@ typedef struct 	s_fl
 
 typedef struct	s_bsq
 {
-	int			posx;
-	int			posy;
+	int			pos;
 	int			size;
 }				t_bsq;
 
-
-void			read_fl(char *map, t_fl *fl);
-t_fl			*init_t_fl();
-t_map			*init_t_map();
-t_bsq			*init_t_bsq();
 int				miniatoi(char *str);
 void			read_map(char *path, t_map *map);
 void			check_map(t_fl *fl, t_map *map);
 void			ft_puterr(void);
+void			read_fl(char *map, t_fl *fl);
+t_fl			*init_t_fl();
+t_map			*init_t_map();
+t_bsq			*init_t_bsq();
 
 #endif
