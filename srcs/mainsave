@@ -1,33 +1,29 @@
 #include "bsq.h"
 
-int		check_line(t_bsq *bsq, t_map *map, t_fl *fl, int p)
-{
-	int i;
-
-	i = 0;
-	while ((i < bsq->siz ) && ( map->map[p] != '\n') &&
-			((p - bsq->siz) < map->nboct))
-	{
-		if (map->map[p] == fl->obs)
-			return(1);
-		p++;
-		i++;
-	}
-	return(0);
-}
 void	check_sq(t_bsq *bsq, t_map *map, t_fl *fl)
 {
 	int p;
 	int lines;
+	int i;
 
 	while (bsq->siz <= map->map_x)
 	{
 	lines = 0;
 		while (lines < bsq->siz)
 		{
-			p = bsq->pos + ((map->map_x + 1) * lines);
-			if (check_line(bsq, map, fl, p) == 1)
-				return;
+			i = 0;
+			p = bsq->pos + ((map->map_y + 1) * lines);
+			while ((i < bsq->siz ) && ( map->map[p] != '\n') &&
+					((p - bsq->siz) < map->nboct))
+			{
+				if (map->map[p] == fl->obs)
+				{
+					bsq->siz--;
+					return;
+				}
+				p++;
+				i++;
+			}
 			lines++;
 		}
 		bsq->siz++;
@@ -50,7 +46,7 @@ int		main(int ac, char **av)
 	check_map(fl, map);
 	printf("x: %d, y: %d\n", map->map_x, map->map_y);
 	check_sq(bsq, map, fl);
-	printf("siz :%d, pos: %d\n", bsq->siz - 1, bsq->pos);
+	printf("siz :%d, pos: %d\n", bsq->siz, bsq->pos);
 
 	ft_putstr(map->map);
 	return (0);

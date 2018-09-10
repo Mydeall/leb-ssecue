@@ -26,12 +26,13 @@ typedef struct 	s_fl
 typedef struct	s_bsq
 {
 	int			pos;
-	int			size;
+	int			siz;
 }				t_bsq;
 
 int				miniatoi(char *str);
 void			read_map(char *path, t_map *map);
 void			check_map(t_fl *fl, t_map *map);
+//int				check_line(int p, t_bsq *bsq, t_map *map, t_fl *fl);
 void			ft_puterr(void);
 void			read_fl(char *map, t_fl *fl);
 t_fl			*init_t_fl();
