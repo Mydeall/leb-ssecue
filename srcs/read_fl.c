@@ -40,4 +40,7 @@ void	read_fl(char *path, t_fl *fl)
 	fl->empty = tab[sizefl - 3];
 	tab[sizefl - 3] = '\0';
 	fl->size = miniatoi(tab);
+	if (fl->size == 0)
+		ft_puterr();
+	free(tab);
 }

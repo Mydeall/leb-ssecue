@@ -12,13 +12,12 @@ void	read_map(char *path, t_map *map)
 	{}
 	while (read(fd, &buf, 1) != 0)
 	{
-		map->nboct++;
+		map->nb++;
 		if (buf == '\n')
 			map->map_y++;
 	}
-	if (!(map->map = malloc(sizeof(char) * map->nboct)))
+	if (!(map->map = malloc(sizeof(char) * map->nb)))
 		exit(1);
-	map->nboct -= map->map_y;
 	close(fd);
 	fd = open(path, O_RDONLY);
 	while (read(fd, &buf, 1) != 0 && buf != '\n')

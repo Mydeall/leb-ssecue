@@ -10,7 +10,7 @@
 typedef struct 	s_map
 {
 	char		*map;
-	int			nboct;
+	int			nb;
 	int			map_y;
 	int			map_x;
 }				t_map;
@@ -23,20 +23,22 @@ typedef struct 	s_fl
 	char		fill;
 }				t_fl;
 
-typedef struct	s_bsq
+typedef struct	s_sq
 {
-	int			pos;
-	int			siz;
-}				t_bsq;
+	int			p;
+	int			size;
+	int			x;
+	int			y;
+}				t_sq;
 
 int				miniatoi(char *str);
 void			read_map(char *path, t_map *map);
 void			check_map(t_fl *fl, t_map *map);
-//int				check_line(int p, t_bsq *bsq, t_map *map, t_fl *fl);
+void			algo(t_fl *fl, t_map *map, t_sq *bsq);
 void			ft_puterr(void);
 void			read_fl(char *map, t_fl *fl);
 t_fl			*init_t_fl();
 t_map			*init_t_map();
-t_bsq			*init_t_bsq();
+t_sq			*init_t_sq();
 
 #endif

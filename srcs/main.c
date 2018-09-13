@@ -1,57 +1,50 @@
 #include "bsq.h"
 
-int		check_line(t_bsq *bsq, t_map *map, t_fl *fl, int p)
+void	free_structs(t_fl *fl, t_map *map, t_sq *bsq)
 {
-	int i;
-
-	i = 0;
-	while ((i < bsq->siz ) && ( map->map[p] != '\n') &&
-			((p - bsq->siz) < map->nboct))
-	{
-		if (map->map[p] == fl->obs)
-			return(1);
-		p++;
-		i++;
-	}
-	return(0);
+	free(bsq);
+	free(fl);
+	free(map);
 }
-void	check_sq(t_bsq *bsq, t_map *map, t_fl *fl)
+void	fill_tab(t_fl *fl, t_map *map, t_sq *bsq)
 {
-	int p;
-	int lines;
+	int p = 0;
+	int x = 0;
+	int y = 0;
 
-	while (bsq->siz <= map->map_x)
+	while (y < bsq->size)
 	{
-	lines = 0;
-		while (lines < bsq->siz)
+		p = bsq->p + ((map->map_x + 1) * y);
+		while (x < bsq->size)
 		{
-			p = bsq->pos + ((map->map_x + 1) * lines);
-			if (check_line(bsq, map, fl, p) == 1)
-				return;
-			lines++;
+			map->map[p + x] = fl->fill;
+			x++;
 		}
-		bsq->siz++;
+		y++;
+		x = 0;
 	}
 }
-
 int		main(int ac, char **av)
 {
 	t_fl *fl;
 	t_map *map;
-	t_bsq *bsq;
+	t_sq *bsq;
+	int		i;
+
+	i = 0;
+	while (i++ < ac - 1)
+	{
 
 	fl = init_t_fl();
 	map = init_t_map();
-	bsq = init_t_bsq();
-	if (ac != 2)
-		return (0);
-	read_fl(av[1], fl);
-	read_map(av[1], map);
+	bsq = init_t_sq();
+	read_fl(av[i], fl);
+	read_map(av[i], map);
 	check_map(fl, map);
-	printf("x: %d, y: %d\n", map->map_x, map->map_y);
-	check_sq(bsq, map, fl);
-	printf("siz :%d, pos: %d\n", bsq->siz - 1, bsq->pos);
-
+	algo(fl, map, bsq);
+	fill_tab(fl, map, bsq);
 	ft_putstr(map->map);
+	free_structs(fl, map, bsq);
+	}
 	return (0);
 }

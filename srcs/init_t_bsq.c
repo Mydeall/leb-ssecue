@@ -1,12 +1,14 @@
 #include "bsq.h"
 
-t_bsq	*init_t_bsq()
+t_sq	*init_t_sq()
 {
-	t_bsq	*init;
+	t_sq	*init;
 
-	if (!(init = malloc(sizeof(t_bsq))))
+	if (!(init = malloc(sizeof(t_sq))))
 		exit(1);
-	init->pos = 0;
-	init->siz = 1;
+	init->p = 0;
+	init->size = 0;
+	init->x = 0;
+	init->y = 0;
 	return (init);
 }

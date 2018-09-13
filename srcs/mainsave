@@ -1,6 +1,6 @@
 #include "bsq.h"
 
-void	check_sq(t_bsq *bsq, t_map *map, t_fl *fl)
+void	check_sq(t_sq *bsq, t_map *map, t_fl *fl)
 {
 	int p;
 	int lines;
@@ -12,9 +12,9 @@ void	check_sq(t_bsq *bsq, t_map *map, t_fl *fl)
 		while (lines < bsq->siz)
 		{
 			i = 0;
-			p = bsq->pos + ((map->map_y + 1) * lines);
+			p = bsq->p + ((map->map_y + 1) * lines);
 			while ((i < bsq->siz ) && ( map->map[p] != '\n') &&
-					((p - bsq->siz) < map->nboct))
+					((p - bsq->siz) < map->nb))
 			{
 				if (map->map[p] == fl->obs)
 				{
@@ -34,11 +34,11 @@ int		main(int ac, char **av)
 {
 	t_fl *fl;
 	t_map *map;
-	t_bsq *bsq;
+	t_sq *bsq;
 
 	fl = init_t_fl();
 	map = init_t_map();
-	bsq = init_t_bsq();
+	bsq = init_t_sq();
 	if (ac != 2)
 		return (0);
 	read_fl(av[1], fl);
@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 	check_map(fl, map);
 	printf("x: %d, y: %d\n", map->map_x, map->map_y);
 	check_sq(bsq, map, fl);
-	printf("siz :%d, pos: %d\n", bsq->siz, bsq->pos);
+	printf("siz :%d, p: %d\n", bsq->siz, bsq->p);
 
 	ft_putstr(map->map);
 	return (0);
