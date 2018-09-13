@@ -32,11 +32,11 @@ typedef struct	s_sq
 }				t_sq;
 
 int				miniatoi(char *str);
-void			read_map(char *path, t_map *map);
-void			check_map(t_fl *fl, t_map *map);
+int				read_map(char *path, t_map *map);
+int				check_map(t_fl *fl, t_map *map);
 void			algo(t_fl *fl, t_map *map, t_sq *bsq);
 void			ft_puterr(void);
-void			read_fl(char *map, t_fl *fl);
+int				read_fl(char *map, t_fl *fl);
 t_fl			*init_t_fl();
 t_map			*init_t_map();
 t_sq			*init_t_sq();
