@@ -4,7 +4,7 @@ t_fl	*init_t_fl()
 {
 	t_fl	*fl;
 
-	if (!(fl = malloc(sizeof(t_fl))))
+	if (!(fl = (t_fl*)malloc(sizeof(t_fl))))
 		exit(1);
 	fl->size = 0;
 	fl->obs  = '\0';

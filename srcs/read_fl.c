@@ -9,14 +9,15 @@ char	*fl_to_tab(char *path)
 
 	i = 0;
 	if ((fd = open(path, O_RDONLY)) == -1)
-		return (0);
+		return (NULL);
 	while (read(fd, &buf, 1) != 0 && buf != '\n')
 		i++;
-	close(fd);
+	if (close(fd) == -1)
+		return (NULL);
 	if ((fd = open(path, O_RDONLY)) == -1)
-		ft_puterr();
-	if (!(tab = malloc(sizeof(char) * i)))
-		return (0);
+		return (NULL);
+	if (!(tab = (char*)malloc(sizeof(char) * i)))
+		return (NULL);
 	i = 0;
 	while (read(fd, &buf, 1) != 0 && buf != '\n')
 		tab[i++] = buf;
@@ -28,7 +29,8 @@ int		read_fl(char *path, t_fl *fl)
 {
 	char *tab;
 	int		sizefl;
-	tab = fl_to_tab(path);
+	if (!(tab = fl_to_tab(path)))
+		return(1);
 
 	sizefl = ft_strlen(tab);
 	if (sizefl < 3)

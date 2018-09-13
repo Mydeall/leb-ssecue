@@ -31,11 +31,12 @@ typedef struct	s_sq
 	int			y;
 }				t_sq;
 
+void			fill_map(t_fl *fl, t_map *map, t_sq *bsq);
+void			free_structs(t_fl *fl, t_map *map, t_sq *bsq);
 int				miniatoi(char *str);
 int				read_map(char *path, t_map *map);
 int				check_map(t_fl *fl, t_map *map);
 void			algo(t_fl *fl, t_map *map, t_sq *bsq);
-void			ft_puterr(void);
 int				read_fl(char *map, t_fl *fl);
 t_fl			*init_t_fl();
 t_map			*init_t_map();
