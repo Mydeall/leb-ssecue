@@ -44,6 +44,6 @@ void	algo(t_fl *fl, t_map *map, t_sq *bsq)
 			bsq->p = ip;
 		}
 		ip++;
-		size = 1;
+		size = bsq->size;
 	}
 }

@@ -1,4 +1,5 @@
 #include "bsq.h"
+
 int	read_map(char *path, t_map *map)
 {
 	int fd;

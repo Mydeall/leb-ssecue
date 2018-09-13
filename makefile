@@ -1,7 +1,12 @@
+
 CC = gcc
+
 CFLAGS = -Wall -Wextra
+
 NAME = bsq
+
 SRCS = ./srcs/*.c
+
 OBJS = ./*.o
 
 all:  $(NAME)
